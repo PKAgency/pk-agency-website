@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PK Agency & Academy</title>
+  <style>
+    :root {
+      --cream: #f4efe8;
+      --cream-strong: #ece4da;
+      --brown: #2f1f16;
+      --brown-soft: #4a3326;
+      --gold: #b8924f;
+      --black: #15120f;
+      --white: #ffffff;
+      --max-width: 1200px;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--cream);
+      color: var(--black);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .section-heading {
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      margin: 0;
+      color: var(--brown);
+      line-height: 1.12;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #2d241f;
+    }
+
+    .gold-divider {
+      width: 72px;
+      height: 3px;
+      margin: 1.3rem 0 1.6rem;
+      border-radius: 50px;
+      background: var(--gold);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+      background: linear-gradient(130deg, #3d281d, #18110b);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible { transform: translateY(-2px); opacity: 0.96; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(20, 16, 12, 0.95);
+      border-bottom: 1px solid rgba(184, 146, 79, 0.35);
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-wrap {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: #f8f3ec;
+      font-family: "Times New Roman", Georgia, serif;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      letter-spacing: 0.08em;
+    }
+
+    .logo-text small {
+      font-family: Arial, sans-serif;
+      font-size: 0.58rem;
+      color: #c9b49b;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+      gap: 1.2rem;
+      color: #f5ede2;
+      font-size: 0.92rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .menu-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(184, 146, 79, .55);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      background: linear-gradient(90deg, var(--cream), #ebdfd2);
+      padding-top: 2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .hero-image {
+      border-radius: 0;
+      overflow: hidden;
+      min-height: 320px;
+      background: #2b2018;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .welcome {
+      text-align: center;
+    }
+
+    .welcome .gold-divider { margin-inline: auto; }
+
+    .cards {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 320px;
+      color: var(--white);
+      display: flex;
+      align-items: flex-end;
+      border: 1px solid rgba(255,255,255,.18);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 8, 6, .86), rgba(10, 8, 6, .25));
+      z-index: 1;
+    }
+
+    .service-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      padding: 1.3rem;
+    }
+
+    .icon-space {
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 50%;
+      margin-bottom: .75rem;
+      display: grid;
+      place-items: center;
+      font-size: .95rem;
+    }
+
+    .card-title {
+      margin: 0;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 2rem;
+      letter-spacing: .02em;
+    }
+
+    .card-content p { margin: .55rem 0 0; line-height: 1.55; max-width: 26ch; }
+
+    .card-divider { width: 60px; height: 3px; background: var(--gold); margin-top: 1rem; }
+
+    .split {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .panel {
+      background: #f9f4ed;
+      border: 1px solid #e4d7c9;
+      padding: 1.6rem;
+    }
+
+    .panel h3 {
+      margin: 0 0 .65rem;
+      font-family: "Times New Roman", Georgia, serif;
+      color: var(--brown);
+      font-size: 1.7rem;
+      font-weight: 500;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(145deg, #2f1f16, #1b130e);
+      color: var(--white);
+    }
+
+    .cta .section-heading,
+    .cta .lead { color: #f6eee5; }
+
+    footer {
+      background: #120e0b;
+      color: #efe4d6;
+      padding: 2.2rem 0 1.2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 1.4rem;
+      font-size: .95rem;
+      line-height: 1.65;
+    }
+
+    .footer-title {
+      font-family: "Times New Roman", Georgia, serif;
+      color: var(--gold);
+      font-size: 1.25rem;
+      margin-bottom: .4rem;
+    }
+
+    .copyright {
+      margin-top: 1.4rem;
+      padding-top: .9rem;
+      border-top: 1px solid rgba(184, 146, 79, .35);
+      font-size: .8rem;
+      color: #d2c0ad;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; gap: 2.4rem; }
+      .hero-copy { order: 1; }
+      .hero-image { order: 2; min-height: 580px; }
+      .cards { grid-template-columns: repeat(3, 1fr); }
+      .split { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (min-width: 980px) {
+      nav ul { display: flex; }
+      .menu-btn { display: none; }
+      .hero { padding-top: 3rem; }
+      .section { padding: 4.6rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-wrap">
+      <a href="#" class="logo" aria-label="PK Agency & Academy home">
+        <span class="logo-mark">PK</span>
+        <span class="logo-text">PK Agency & Academy<small>Talent Development & Representation</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#representation">Representation</a></li>
+          <li><a href="#academy">Academy</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#apply">Apply</a></li>
+        </ul>
+      </nav>
+      <button class="menu-btn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="section-heading">The East Midlands’ Leading Model & Talent Agency</h1>
+          <div class="gold-divider"></div>
+          <p class="lead">Developing talent. Creating futures.</p>
+          <a href="#apply" class="btn">Join PK</a>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80" alt="Fashion model portrait placeholder" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section welcome" id="about">
+      <div class="container">
+        <h2 class="section-heading">Welcome to PK Agency</h2>
+        <div class="gold-divider"></div>
+        <p class="lead">We are a family-run talent development and representation agency with deep roots in the performing arts. PK Agency & Academy nurtures emerging and established talent through honest guidance, bespoke training, and industry-focused opportunities across modelling, acting, and performance.</p>
+        <a class="btn" href="#about-pk">Find Out More</a>
+
+        <div class="cards">
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Models service placeholder" />
+            <div class="card-content">
+              <div class="icon-space">◌</div>
+              <h3 class="card-title">Models</h3>
+              <p>Commercial campaigns, editorial styling, e-commerce, and brand partnerships.</p>
+              <div class="card-divider"></div>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=80" alt="Actors service placeholder" />
+            <div class="card-content">
+              <div class="icon-space">◌</div>
+              <h3 class="card-title">Actors</h3>
+              <p>TV, film, commercial and stage opportunities supported by dedicated representation.</p>
+              <div class="card-divider"></div>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?auto=format&fit=crop&w=900&q=80" alt="Performers service placeholder" />
+            <div class="card-content">
+              <div class="icon-space">◌</div>
+              <h3 class="card-title">Performers</h3>
+              <p>Dancers, singers, and multidisciplinary artists ready for standout performances.</p>
+              <div class="card-divider"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about-pk">
+      <div class="container split">
+        <article class="panel">
+          <h3>About PK</h3>
+          <p class="lead">PK Agency & Academy combines boutique care with professional ambition. Our trusted team supports every individual journey from first casting profile to long-term career development.</p>
+        </article>
+        <article class="panel" id="representation">
+          <h3>Agency Representation</h3>
+          <p class="lead">We connect talent with premium clients, casting directors, production teams, and creative agencies while managing submissions, bookings, and long-term growth.</p>
+        </article>
+        <article class="panel" id="academy">
+          <h3>Academy Training</h3>
+          <p class="lead">Our academy delivers industry-relevant coaching in camera confidence, audition technique, movement, and personal brand presence.</p>
+        </article>
+        <article class="panel" id="portfolio">
+          <h3>Portfolio & Headshots</h3>
+          <p class="lead">We offer polished portfolio support and headshot direction so each client presents a refined, market-ready image.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cta" id="apply">
+      <div class="container">
+        <h2 class="section-heading">Apply / Join PK</h2>
+        <div class="gold-divider" style="margin-inline:auto"></div>
+        <p class="lead">Ready to begin your journey with PK Agency & Academy? Submit your application and our team will be in touch.</p>
+        <a href="#" class="btn">Start Application</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Contact</div>
+          <div>PK Agency & Academy<br />Nottingham, East Midlands, UK</div>
+          <div>Email: hello@pkagencyacademy.com<br />Phone: +44 (0)115 000 0000</div>
+        </div>
+        <div>
+          <div class="footer-title">Social</div>
+          <div><a href="#">Instagram</a></div>
+          <div><a href="#">Facebook</a></div>
+          <div><a href="#">TikTok</a></div>
+        </div>
+        <div>
+          <div class="footer-title">Quick Links</div>
+          <div><a href="#about">About PK</a></div>
+          <div><a href="#representation">Representation</a></div>
+          <div><a href="#academy">Academy Training</a></div>
+        </div>
+      </div>
+      <div class="copyright">© 2026 PK Agency & Academy. All rights reserved.</div>
+    </div>
+  </footer>
+</body>
+</html>
